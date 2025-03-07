@@ -1,15 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
-const Navbar: React.FC = () => {
+
+interface NavbarProps{
+    backgroundColor : string;
+    color : string;
+}
+const Navbar: React.FC<NavbarProps> = ({backgroundColor, color}) => {
+    const navigate = useNavigate();
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{backgroundColor:backgroundColor, color: color}}>
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h5" component="div" sx={{ flexGrow: 1 , marginLeft:'10vw', fontWeight:'bold'}}>
                     Linkify
                 </Typography>
-                <Button color="inherit">Login</Button>
-                <Button color="inherit">Register</Button>
+                <Button color="inherit" onClick={() => {navigate('/login')}}>Login</Button>
+                <Button color="inherit" onClick={()=> navigate('signup')}>Register</Button>
             </Toolbar>
         </AppBar>
     );

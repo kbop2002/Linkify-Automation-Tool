@@ -1,50 +1,30 @@
-import React from 'react';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
-import Dashboard from './components/dashboard/Dashboard.tsx';
-import Navbar from './components/shared/Navbar.tsx';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing.tsx";
+import Login from "./pages/Login.tsx";
+import Signup from "./pages/Signin.tsx";
+import MainPage from "./pages/MainPage.tsx";
+import SupplierCenter from "./pages/SupplierCenter.tsx";
+import StorefrontCenter from "./pages/StorefrontCenter.tsx";
+import Plans from "./pages/PlansPage.tsx";
+import SettingsPage from "./pages/Settings.tsx";
 
-const App: React.FC = () => {
-    const particlesInit = async (main: any) => {
-        await loadFull(main);
-    };
 
-    return (
-        <div style={{ position: 'relative', height: '100vh' }}>
-            <Particles
-                id="tsparticles"
-                init={particlesInit}
-                options={{
-                    background: {
-                        color: {
-                            value: "#0d47a1",
-                        },
-                    },
-                    fpsLimit: 60,
-                    particles: {
-                        color: { value: "#ffffff" },
-                        links: {
-                            color: "#ffffff",
-                            distance: 150,
-                            enable: true,
-                        },
-                        move: {
-                            enable: true,
-                            speed: 2,
-                        },
-                        number: {
-                            density: { enable: true, area: 800 },
-                            value: 50,
-                        },
-                    },
-                }}
-            />
-            <div style={{ position: 'absolute', top: 0, width: '100%', zIndex: 1 }}>
-                <Navbar />
-                <Dashboard />
-            </div>
-        </div>
-    );
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path ='/settings' element={<SettingsPage/>}/>
+      <Route path ='/plans' element={<Plans/>}/>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<MainPage />} />
+        <Route path="/supplier-center" element={<SupplierCenter />} />
+        <Route path="/storefront-center" element={<StorefrontCenter />} />
+    </Routes>
+  );
 };
 
 export default App;
+
+
